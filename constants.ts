@@ -1,0 +1,125 @@
+
+import { User, Ticket, Role, TicketStatus, Invoice } from './types';
+
+export const E_LIGUE_APPLICATIONS = [
+  'CRM',
+  'Bureau d’ordre',
+  'Arbitrage',
+  'Comptabilité',
+  'Ressources Humaines',
+];
+
+export const MOCK_USERS: User[] = [
+  {
+    id: 'user-1',
+    login: 'alice.martin@eligue.com',
+    password: 'password123',
+    fullName: 'Alice Martin',
+    email: 'alice.martin@eligue.com',
+    phone: '0612345678',
+    entity: 'Ventes',
+    position: 'Commercial',
+    applications: ['CRM'],
+    role: Role.User,
+  },
+  {
+    id: 'user-2',
+    login: 'bob.durand@eligue.com',
+    password: 'password123',
+    fullName: 'Bob Durand',
+    email: 'bob.durand@eligue.com',
+    phone: '0687654321',
+    entity: 'Administration',
+    position: 'Secrétaire',
+    applications: ['Bureau d’ordre'],
+    role: Role.User,
+  },
+  {
+    id: 'tech-1',
+    login: 'charlie.lefebvre@tech.eligue.com',
+    password: 'password123',
+    fullName: 'Charlie Lefebvre',
+    email: 'charlie.lefebvre@tech.eligue.com',
+    phone: '0711223344',
+    entity: 'Support Technique',
+    position: 'Technicien N1',
+    applications: ['CRM', 'Bureau d’ordre'],
+    role: Role.Technician,
+  },
+  {
+    id: 'tech-2',
+    login: 'diana.petit@tech.eligue.com',
+    password: 'password123',
+    fullName: 'Diana Petit',
+    email: 'diana.petit@tech.eligue.com',
+    phone: '0755667788',
+    entity: 'Support Technique',
+    position: 'Technicien N2',
+    applications: ['Arbitrage', 'Comptabilité', 'Ressources Humaines'],
+    role: Role.Technician,
+  },
+  {
+    id: 'admin-1',
+    login: 'eligue_crm_admin',
+    password: 'Ca@987654322',
+    fullName: 'Eve Dubois',
+    email: 'eve.dubois@admin.eligue.com',
+    phone: '0699887766',
+    entity: 'Direction SI',
+    position: 'Administrateur Système',
+    applications: E_LIGUE_APPLICATIONS,
+    role: Role.Admin,
+  },
+];
+
+export const MOCK_TICKETS: Ticket[] = [
+  {
+    id: 'ticket-1',
+    serialNumber: 'TI-0001',
+    title: 'Impossible de se connecter au CRM',
+    application: 'CRM',
+    location: 'Bureau 301',
+    description: 'Depuis ce matin, je reçois un message "Login incorrect" alors que mon mot de passe est bon.',
+    attachments: [],
+    status: TicketStatus.InProgress,
+    createdAt: new Date('2023-10-26T09:00:00Z'),
+    createdBy: MOCK_USERS[0],
+    assignedTo: MOCK_USERS[2],
+  },
+  {
+    id: 'ticket-2',
+    serialNumber: 'TI-0002',
+    title: "Erreur d'archivage document",
+    application: 'Bureau d’ordre',
+    location: 'Accueil',
+    description: 'Le système affiche une erreur 500 lors de la tentative d\'archivage d\'un courrier entrant.',
+    attachments: [],
+    status: TicketStatus.Created,
+    createdAt: new Date('2023-10-27T11:30:00Z'),
+    createdBy: MOCK_USERS[1],
+  },
+  {
+    id: 'ticket-3',
+    serialNumber: 'TI-0003',
+    title: 'Calcul des scores erroné',
+    application: 'Arbitrage',
+    location: 'Salle de match B',
+    description: 'Le calcul des points pour le joueur 2 ne se met pas à jour correctement.',
+    attachments: [],
+    status: TicketStatus.Closed,
+    createdAt: new Date('2023-10-25T15:00:00Z'),
+    createdBy: MOCK_USERS[0],
+    assignedTo: MOCK_USERS[3],
+  },
+];
+
+export const MOCK_INVOICES: Invoice[] = [
+    {
+        id: 'inv-1',
+        ticketId: 'ticket-3',
+        ticketSerialNumber: 'TI-0003',
+        technicianName: 'Diana Petit',
+        date: new Date('2023-10-25T18:00:00Z'),
+        amount: 75.00,
+    }
+];

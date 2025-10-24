@@ -1,0 +1,5 @@
+{
+  "name": "E-LIGUE – Assistance",
+  "description": "An application for managing technical support tickets for users of E-LIGUE applications. It provides distinct interfaces for administrators, technicians, and users to create, track, assign, and resolve support tickets efficiently.",
+  "requestFramePermissions": []
+}
